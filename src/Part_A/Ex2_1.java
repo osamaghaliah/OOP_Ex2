@@ -15,7 +15,7 @@ public class Ex2_1 {
 
         try {
             for (int i = 0; i < n; i++) {
-                FileWriter out = new FileWriter("WrittenFiles\\file_" + i);
+                FileWriter out = new FileWriter("src\\Part_A\\WrittenFiles\\file_" + i);
                 BufferedWriter bw = new BufferedWriter(out);
 
                 for (int j = 1; j <= r.nextInt(bound); j++) {
@@ -37,7 +37,7 @@ public class Ex2_1 {
 
         try {
             for (int i = 0; i < fileNames.length; i++) {
-                FileReader in = new FileReader("WrittenFiles\\" + fileNames[i]);
+                FileReader in = new FileReader("src\\Part_A\\WrittenFiles\\" + fileNames[i]);
                 BufferedReader br = new BufferedReader(in);
 
                 while (br.readLine() != null)
@@ -57,7 +57,7 @@ public class Ex2_1 {
 
         try {
             for (int i = 0; i < fileNames.length; i++) {
-                OurThread t = new OurThread("WrittenFiles\\" + fileNames[i]);
+                OurThread t = new OurThread("src\\Part_A\\WrittenFiles\\" + fileNames[i]);
                 t.start();
                 t.join();
                 accumulated_lines += t.getLines();

@@ -17,7 +17,7 @@ public class FileLinesCalculationTask implements Callable <Integer> {
     @Override
     public Integer call() throws Exception {
         try {
-            FileReader in = new FileReader("WrittenFiles\\" + this.fileName);
+            FileReader in = new FileReader("src\\Part_A\\WrittenFiles\\" + this.fileName);
             BufferedReader br = new BufferedReader(in);
 
             while (br.readLine() != null) {
