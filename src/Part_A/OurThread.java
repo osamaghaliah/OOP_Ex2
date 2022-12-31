@@ -21,9 +21,8 @@ public class OurThread extends Thread {
         try {
             FileReader in = new FileReader(this.fileName);
             BufferedReader br = new BufferedReader(in);
-            String currentLine;
 
-            while ((currentLine = br.readLine()) != null) {
+            while (br.readLine() != null) {
                 this.lines++;
             }
 
