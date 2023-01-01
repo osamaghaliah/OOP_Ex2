@@ -1,2 +1,2 @@
-# OOP_Ex2
-This project includes various implementations about Java Threads.
+<h1 align="center">:clock9: Threads In Java :clock3:</h1>
+<h2 align="center"> Object-Oriented-Programming </h2>
