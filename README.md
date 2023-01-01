@@ -6,4 +6,4 @@
 _Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior._
 > **_SOURCE: TechTarget_**
 
-<h3> Assignment: </h3>
+<h3> Assignment - Part A: </h3>
