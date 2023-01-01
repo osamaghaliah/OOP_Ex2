@@ -1,10 +1,7 @@
 package Part_A;
 
 /**
- * This class represents a single task as the following: reading a file and counting its lines.
- * It implements Callable <Integer> interface, so we can have a customized call() function and return an Integer object.
- * The Integer object is representing the current file's number of lines.
- * This task will basically be submitted into a thread pool.
+ * This class represents a customized thread that reads a specific file and counts its lines.
  * An object of such class is used in Ex2_1 Java file.
  *
  * @author: Osama & Hamad
@@ -13,34 +10,37 @@ package Part_A;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.concurrent.Callable;
 
-public class FileLinesCalculationTask implements Callable <Integer> {
+public class FileLinesCalculationThread extends Thread {
     // An attribute that represents a file's name that will be given from other classes/functions.
     private String fileName;
     // An attribute that represents the current file's lines - defined as volatile, so it can be visible for other threads.
-    private volatile Integer lines;
+    private volatile int lines;
 
     /**
      * Constructor - Assigning our file's name attribute & initializing the "lines" attribute as 0
      * @param fileName - A file's name that will be passed from other classes/functions.
      */
-    public FileLinesCalculationTask (String fileName) {
+    public FileLinesCalculationThread(String fileName) {
         this.fileName = fileName;
         this.lines = 0;
     }
 
     /**
-     * An overridden function: performs the above-mentioned task - reading a file and counting its lines.
-     * This function starts running once the submit() function of an ExecutionService object is called - thread pool related.
-     * @return An Integer object which represents the current file's lines.
-     * @throws Exception of type IOException.
+     * This is a getter function.
+     * @return "lines" attribute value.
      */
-    @Override
-    public Integer call() throws Exception {
+    public int getLines() {
+        return this.lines;
+    }
+
+    /**
+     * This function starts running once the start() function is called of this thread - extending from Thread.
+     */
+    public void run() {
         try {
             // Reading the current file's name.
-            FileReader in = new FileReader("src\\Part_A\\WrittenFiles\\" + this.fileName);
+            FileReader in = new FileReader(this.fileName);
             BufferedReader br = new BufferedReader(in);
 
             // Counting the current file's lines.
@@ -51,9 +51,7 @@ public class FileLinesCalculationTask implements Callable <Integer> {
             // Closing the current file after reading it.
             br.close();
         } catch (IOException e) {
-            throw new IOException();
+            e.printStackTrace();
         }
-
-        return this.lines;
     }
 }

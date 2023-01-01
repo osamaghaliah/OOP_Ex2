@@ -1,4 +1,16 @@
 package Part_A;
+/**
+ * Assignment Ex2 - Part A :-
+ * This class contains 4 functions that are dealing with writing/reading files and their lines in various ways:
+ *
+ *      1) Without a thread.
+ *      2) With a thread.
+ *      3) With a thread pool.
+ *
+ * NOTE: The written files are stored in package: WrittenFiles
+ *
+ * @author: Osama & Hamad
+ */
 
 import java.io.*;
 import java.util.Random;
@@ -90,7 +102,7 @@ public class Ex2_1 {
             // Reading each file and storing its number of lines by using a customized thread.
             for (String name : fileNames) {
                 // Initializing our customized thread by informing him of the current file's name.
-                OurThread t = new OurThread("src\\Part_A\\WrittenFiles\\" + name);
+                FileLinesCalculationThread t = new FileLinesCalculationThread("src\\Part_A\\WrittenFiles\\" + name);
                 // Starting our thread to perform the required task - reading the current file and counting its lines.
                 t.start();
                 t.join();
@@ -120,9 +132,10 @@ public class Ex2_1 {
         try {
             // Reading each file and storing its number of lines by using call() function of Callable interface.
             for (String name : fileNames) {
+                FileLinesCalculationTask task = new FileLinesCalculationTask(name);
                 // Submitting each task into our thread pool - each thread handles one file.
                 // Then, we store each returned Integer value from call() into a Future object.
-                Future <Integer> lines_calculated_in_call = ThreadPool.submit(new FileLinesCalculationTask(name));
+                Future <Integer> lines_calculated_in_call = ThreadPool.submit(task);
                 // Getting the number of lines that were calculated of our Future object.
                 Integer lines = lines_calculated_in_call.get();
                 accumulated_lines += lines;
