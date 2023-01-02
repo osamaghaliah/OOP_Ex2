@@ -19,7 +19,7 @@ public class FileLinesCalculationTask implements Callable <Integer> {
     // An attribute that represents a file's name that will be given from other classes/functions.
     private String fileName;
     // An attribute that represents the current file's lines - defined as volatile, so it can be visible for other threads.
-    private volatile Integer lines;
+    private volatile int lines;
 
     /**
      * Constructor - Assigning our file's name attribute & initializing the "lines" attribute as 0

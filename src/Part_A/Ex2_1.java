@@ -13,11 +13,11 @@ package Part_A;
  */
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class Ex2_1 {
 
@@ -126,20 +126,24 @@ public class Ex2_1 {
     public static int getNumOfLinesThreadPool(String[] fileNames) {
         // Initializing a group of n (number of written files) threads by using ExecutorService class.
         ExecutorService ThreadPool = Executors.newFixedThreadPool(fileNames.length);
+        // Initializing a list of tasks.
+        List <FileLinesCalculationTask> tasks = new ArrayList<>();
         // Initializing a variable that holds a to-be-calculated accumulated lines of all files.
         int accumulated_lines = 0;
 
         try {
-            // Reading each file and storing its number of lines by using call() function of Callable interface.
+            // Filling up our empty initialized list of tasks - each task is responsible for each file.
             for (String name : fileNames) {
                 FileLinesCalculationTask task = new FileLinesCalculationTask(name);
-                // Submitting each task into our thread pool - each thread handles one file.
-                // Then, we store each returned Integer value from call() into a Future object.
-                Future <Integer> lines_calculated_in_call = ThreadPool.submit(task);
-                // Getting the number of lines that were calculated of our Future object.
-                Integer lines = lines_calculated_in_call.get();
-                accumulated_lines += lines;
+                tasks.add(task);
             }
+
+            // Storing each file's amount of lines in a list by using invokeAll method - higher speed & less latency.
+            List <Future <Integer>> lines_of_each_file_list = ThreadPool.invokeAll((Collection) tasks);
+
+            // Adding each file's amount of lines into our accumulated_lines variable.
+            for (Future<Integer> lines : lines_of_each_file_list)
+                accumulated_lines += lines.get();
         }
 
         // Handling both exceptions: InterruptedException & ExecutionException
@@ -155,21 +159,6 @@ public class Ex2_1 {
 
 
     public static void main(String [] args) {
-        String [] names_of_files = createTextFiles(3, 1, 10);
 
-        long start_time2 = System.nanoTime();
-        getNumOfLines(names_of_files);
-        long f2_time = System.nanoTime() - start_time2;
-        System.out.println(f2_time);
-
-        long start_time3 = System.nanoTime();
-        getNumOfLinesThreads(names_of_files);
-        long f3_time = System.nanoTime() - start_time3;
-        System.out.println(f3_time);
-
-        long start_time4 = System.nanoTime();
-        getNumOfLinesThreadPool(names_of_files);
-        long f4_time = System.nanoTime() - start_time4;
-        System.out.println(f4_time);
     }
 }
