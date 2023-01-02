@@ -20,7 +20,14 @@ _Object-oriented programming (OOP) is a computer programming model that organize
 
    ![RuntimeOutput](https://user-images.githubusercontent.com/75171676/210275919-b909c12d-c50a-4684-ac02-882f5003bb1e.PNG)
    
-   The runtime output was programmed by the following block code:
+   _Each runtime output was calculated by using System.nanoTime() command as the following:_
+    
+    <pre><b><i>
+    > long start_time_of_func = System.nanoTime();
+    // Here we put some program or calling a function...
+    long end_time_of_func = System.nanoTime() - start_time_of_func;
+    System.out.println(end_time_of_func);
+    </pre></b></i>
    
    _The whole solutions have counted the same amount of accumulated lines: 125,860. However, the speed of each solution varies:_
    
