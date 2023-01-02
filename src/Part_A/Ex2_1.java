@@ -94,7 +94,7 @@ public class Ex2_1 {
      * @param fileNames - An array of type String holding the names of the files that were written before.
      * @return An accumulated lines of the whole files.
      */
-    public static int getNumOfLinesThreads(String[] fileNames) {
+    public int getNumOfLinesThreads(String[] fileNames) {
         // Initializing a variable that holds a to-be-calculated accumulated lines of all files.
         int accumulated_lines = 0;
 
@@ -123,7 +123,7 @@ public class Ex2_1 {
      * @param fileNames - An array of type String holding the names of the files that were written before.
      * @return An accumulated lines of the whole files.
      */
-    public static int getNumOfLinesThreadPool(String[] fileNames) {
+    public int getNumOfLinesThreadPool(String[] fileNames) {
         // Initializing a group of n (number of written files) threads by using ExecutorService class.
         ExecutorService ThreadPool = Executors.newFixedThreadPool(fileNames.length);
         // Initializing a list of tasks.
@@ -155,10 +155,5 @@ public class Ex2_1 {
         ThreadPool.shutdown();
 
         return accumulated_lines;
-    }
-
-
-    public static void main(String [] args) {
-
     }
 }
