@@ -46,7 +46,7 @@ _A thread in Java is the direction or path that is taken while a program is bein
    
    _To conclude, threads are basically providing us efficiency. Because, we tend to divide some parts of a program and hand it to some thread to do it for us.
    Therefore, we save time and that program ends faster. First, we accomplished the objective without using any threads, thus, the function that was specified for
-   this solution has performed the whole work by herself. Second, we solved the problem by creating a thread that was responsible to read a file that will be passed
+   this solution has performed the whole work by itself. Second, we solved the problem by creating a thread that was responsible to read a file that will be passed
    for him, thus, this step has saved more time than the previous solution. Third, a thread pool was made and connected into our objective - which means, we managed
    to solve our problem by dedicating many threads such that each thread receives a certain file to read and provide us a result at the end, thus, for a high number
    of files, the multithreading idea would handle them files more efficiently._
@@ -65,7 +65,7 @@ _A thread in Java is the direction or path that is taken while a program is bein
     
      **3. _getNumOfLinesThreads(String []) -_** _This function solves the problem by using a thread._
      
-     **4. _getNumOfLinesThreadsPool -_** _This function solves the problem by using a thread pool._
+     **4. _getNumOfLinesThreadPool(String []) -_** _This function solves the problem by using a thread pool._
      
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
