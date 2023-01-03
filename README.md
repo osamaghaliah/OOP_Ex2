@@ -51,7 +51,7 @@ _A thread in Java is the direction or path that is taken while a program is bein
    to solve our problem by dedicating many threads such that each thread receives a certain file to read and provide us a result at the end, thus, for a high number
    of files, the multithreading idea would handle them files more efficiently._
    
-   _Feel free to have a glance about the written files content  [HERE](https://github.com/osamaghaliah/OOP_Ex2/tree/master/src/Part_A/WrittenFiles)_
+   _Feel free to have a glance about the written files content  [HERE](https://github.com/osamaghaliah/OOP_Ex2/tree/master/src/Part_A/WrittenFiles)_.
    
 * **U.M.L Diagram -**
 
