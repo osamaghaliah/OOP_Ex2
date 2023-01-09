@@ -139,7 +139,7 @@ public class Ex2_1 {
             }
 
             // Storing each file's amount of lines in a list by using invokeAll method - higher speed & less latency.
-            List <Future <Integer>> lines_of_each_file_list = ThreadPool.invokeAll((Collection) tasks);
+            List <Future <Integer>> lines_of_each_file_list = ThreadPool.invokeAll(tasks);
 
             // Adding each file's amount of lines into our accumulated_lines variable.
             for (Future<Integer> lines : lines_of_each_file_list)
