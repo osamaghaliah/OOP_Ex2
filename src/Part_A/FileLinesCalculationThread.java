@@ -4,7 +4,7 @@ package Part_A;
  * This class represents a customized thread that reads a specific file and counts its lines.
  * An object of such class is used in Ex2_1 Java file.
  *
- * @author: Osama & Hamad
+ * @Authors: Osama & Hamad.
  */
 
 import java.io.BufferedReader;

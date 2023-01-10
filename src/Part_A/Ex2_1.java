@@ -9,7 +9,7 @@ package Part_A;
  *
  * NOTE: The written files are stored in package: WrittenFiles
  *
- * @author: Osama & Hamad
+ * @Authors: Osama & Hamad.
  */
 
 import java.io.*;

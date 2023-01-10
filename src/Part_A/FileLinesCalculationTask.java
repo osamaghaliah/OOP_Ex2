@@ -7,7 +7,7 @@ package Part_A;
  * This task will basically be submitted into a thread pool.
  * An object of such class is used in Ex2_1 Java file.
  *
- * @author: Osama & Hamad
+ * @Authors: Osama & Hamad.
  */
 
 import java.io.BufferedReader;
@@ -51,7 +51,7 @@ public class FileLinesCalculationTask implements Callable <Integer> {
             // Closing the current file after reading it.
             br.close();
         } catch (IOException e) {
-            throw new IOException();
+            throw new IOException("The call() method has failed!");
         }
 
         return this.lines;
