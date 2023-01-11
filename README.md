@@ -96,7 +96,7 @@
    
    - _**Chain Of Responsibility:** The Chain Of Responsibility pattern is used to achieve loose coupling in software design where a request from client is passed to a chain of objects to process them. Then the object in the chain will decide themselves who will be processing the request and whether the request is required to be sent to the next object in the chain or not. Such pattern was used in our solution to provide execptions-handling in a lot of functions. Thus, Chain Of Responsibility patterns belongs to the Behavioral category._
    
-  _To conclude, let's illustrate how the above 5 mentioned patterns ACTUALLY related into our solution:_
+  _To conclude, let's illustrate how the above 5 mentioned patterns are ACTUALLY related into our solution:_
    
    | **Design Pattern**          | **Category**    | **How was it used**                                                                       |
    |:---------------------------:|:---------------:|:----------------------------------------------------------------------------------------  |
