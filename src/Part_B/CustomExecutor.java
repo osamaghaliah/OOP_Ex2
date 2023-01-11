@@ -8,6 +8,7 @@ package Part_B;
  * @Authors: Osama & Hamad.
  */
 
+import java.util.HashMap;
 import java.util.concurrent.*;
 
 public class CustomExecutor extends ThreadPoolExecutor {
@@ -55,7 +56,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
      * @return - A new customized FutureTask that will run in the thread pool.
      */
     protected <T> RunnableFuture <T> newTaskFor(Callable <T> task) {
-        return new ComparablePriorityAdapter<>(task);
+        return new ComparablePriorityAdapter <> (task);
     }
 
     /**
@@ -87,7 +88,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
     public synchronized <T> Future <T> submit(Callable <T> task) {
         // Initializing an instance of Task <T> and passing the callable task into it.
         // The Task <T> instance is passed into the first submit(Task <T>) function.
-        return this.submit(new Task<>(task));
+        return this.submit(new Task <> (task));
     }
 
     /**
@@ -100,7 +101,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
     public synchronized <T> Future <T> submit(Callable <T> task, TaskType type) {
         // Initializing an instance of Task <T> and passing the callable task & the type of the task into it.
         // The Task <T> instance is passed into the first submit(Task <T>) function.
-        return this.submit(new Task<>(task, type));
+        return this.submit(new Task <> (task, type));
     }
 
     /**

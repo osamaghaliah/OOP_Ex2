@@ -39,7 +39,7 @@ public class ComparablePriorityAdapter <T> extends FutureTask <T> implements Com
      * @return - An integer value that represents a YES/NO answer of which task's priority is higher.
      */
     @Override
-    public int compareTo(ComparablePriorityAdapter<T> otherTask) {
+    public int compareTo(ComparablePriorityAdapter <T> otherTask) {
         int ans = 0;
 
         if (this.getTask().getType() != null && otherTask.getTask().getType() != null)

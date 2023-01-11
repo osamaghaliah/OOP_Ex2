@@ -177,6 +177,11 @@ public class Tests {
 
         // Gracefully terminating our thread pool and finishing its own inner left tasks.
         ThreadPool.gracefullyTerminate();
+
+        // Making sure that the thread pool has been successfully terminated.
+        ThreadPool.awaitTermination(1, TimeUnit.MILLISECONDS);
+        assertTrue(ThreadPool.isTerminated());
+        logger.info(() -> "The thread pool has been successfully TERMINATED!");
     }
 
 }
