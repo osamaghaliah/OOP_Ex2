@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.concurrent.*;
 
 public class CustomExecutor extends ThreadPoolExecutor {
+    // This attribute represents a log of asynchronous tasks that were submitted with their type in the thread pool.
+    // Keys - are the priorities | Values - are the asynchronous tasks.
+    private HashMap <Integer, Task> history;
     // This attribute represents the highest priority of a task that is sitting among other tasks in pool's queue.
     private int currentMaxPriority;
     // Setting up our minimum and maximum pool sizes according to your computer's number of cores for the constructor.
@@ -31,6 +34,23 @@ public class CustomExecutor extends ThreadPoolExecutor {
     public CustomExecutor() {
         super(minPoolSize, maxPoolSize, 300, TimeUnit.MILLISECONDS, new PriorityBlockingQueue <> ());
         this.currentMaxPriority = 1;
+        this.history = new HashMap <> ();
+    }
+
+    /**
+     * This is a getter function.
+     * @return - The "history" attribute, a HashMap.
+     */
+    public HashMap <Integer, Task> getHistory() {
+        return this.history;
+    }
+
+    /**
+     * This is a setter function that assigns a new HashMap into our attribute "history"
+     * @param history - A new HashMap to be assigned into our "history" attribute.
+     */
+    public void setHistory(HashMap <Integer, Task> history) {
+        this.history = history;
     }
 
     /**
@@ -46,6 +66,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
      * @param currentMaxPriority - the new value to be assigned for our currentMaxPriority attribute.
      */
     public void setCurrentMaxPriority(int currentMaxPriority) {
+       // Making sure of priority's validation.
        if (currentMaxPriority >= 1 && currentMaxPriority <= 10)
             this.currentMaxPriority = currentMaxPriority;
     }
@@ -67,6 +88,10 @@ public class CustomExecutor extends ThreadPoolExecutor {
     public synchronized <T> Future <T> submit(Task <T> task) {
         try {
             if (task.getType() != null) {
+                // If the task was submitted with its type - it gets added into our history HashMap.
+                Task <T> asyncTask = new Task <> (task, task.getType());
+                this.history.put(task.getPriority(), asyncTask);
+                // Updating the maximum current priority that is going be existed in the thread pool's queue.
                 if (task.getPriority() >= this.currentMaxPriority)
                     this.setCurrentMaxPriority(task.getPriority());
             }
@@ -109,9 +134,8 @@ public class CustomExecutor extends ThreadPoolExecutor {
      * @return - currentMaxPriority attribute's value - which was adjusted accordingly.
      */
     public synchronized int getCurrentMax() {
-        return this.getCurrentMaxPriority();
+        return this.history.get(this.currentMaxPriority).getType().getPriorityValue();
     }
-
 
     /**
      * This function shuts down our whole thread pool as the following:
