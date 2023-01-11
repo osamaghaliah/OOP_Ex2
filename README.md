@@ -84,7 +84,7 @@
    
    _Each one of the above implementations were developed by implementing Java's Callable <T> interface & extending ThreadPoolExecutor class._
    
-* **Design Patterns Used -** _In order to achieve the objective mentioned above, we have implemented various design patterns that contribute in wrapping our solution as a whole. Design patterns are building blocks of a system's architecture which are recurring solution to design problems we face. They tend to identify and specify abstractions that are above the level of single classes and instances. Design Patterns are classified into 3 categories: Creational, Behavioural & Structural. Now, let's introduce the design patterns we used that all together present us our final solution:_
+* **Design Patterns Used -** _In order to achieve the objective mentioned above, we have implemented various design patterns that contribute in wrapping our solution as a whole. Design patterns are building blocks of a system's architecture which are recurring solution to design problems we face. They tend to identify and specify abstractions that are above the level of single classes and instances. Design Patterns are classified into 3 categories: Creational, Behavioral & Structural. Now, let's introduce the design patterns we used that all together present us our final solution:_
    
    - _**Thread Pool:** The Thread Pool pattern is a design pattern, used in software engineering to organise the processing of a large number of queued tasks through a smaller/limited number of threads. Results can also be queued. When a thread finishes it's task it requests another. If none are available, the thread can wait or terminate. Such pattern was used in our solution to provide a customized thread pool that progresses tasks according to their priorities and not according to its threads._
    
@@ -94,4 +94,28 @@
    
    - _**Factory Method:** The Factory Method pattern defines an interface for creating an object of particular abstract type. However, it lets subclasses decide which concrete class to instantiate. Generally, it is used by many modern frameworks and APIs. Such pattern was used in our solution in order to create customized tasks. Thus, Factory Method pattern belongs to the Creational category._
    
-   - _**Chain Of Responsibility:** The Chain Of Responsibility pattern is used to achieve loose coupling in software design where a request from client is passed to a chain of objects to process them. Then the object in the chain will decide themselves who will be processing the request and whether the request is required to be sent to the next object in the chain or not. Such pattern was used in our solution to provide execptions-handling in a lot of functions. Thus, Chain Of Responsibility patterns belongs to the Behavioural category._
+   - _**Chain Of Responsibility:** The Chain Of Responsibility pattern is used to achieve loose coupling in software design where a request from client is passed to a chain of objects to process them. Then the object in the chain will decide themselves who will be processing the request and whether the request is required to be sent to the next object in the chain or not. Such pattern was used in our solution to provide execptions-handling in a lot of functions. Thus, Chain Of Responsibility patterns belongs to the Behavioral category._
+   
+  _To conclude, let's illustrate how the above 5 mentioned patterns ACTUALLY related into our solution:_
+   
+   | **Design Pattern**          | **Category**    | **How was it used**                                                                       |
+   |:---------------------------:|:---------------:|:----------------------------------------------------------------------------------------  |
+   | **Thread Pool**             | _Concurrency_   | _Providing a customized thread pool that progresses tasks according to their priorities._ |
+   | **Active Object**           | _Concurrency_   | _Providing multiple tasks to be executed in our custom thread pool._                      |
+   | **Adapter**                 | _Structural_    | _Making our thread pool accept our customized callable tasks instead of runnables._       |
+   | **Factory Method**          | _Creational_    | _Creating a static method that creates our asynchronous tasks._                           |
+   | **Chain Of Responsibility** | _Behavioral_    | _Providing execptions-handling._                                                          |
+   
+
+* **U.M.L Diagram -**
+
+   ![UML](https://user-images.githubusercontent.com/75171676/211866856-e2ffe569-94c7-417d-b39e-83b2f3a4a73a.png)
+   
+   _**Clarification:**_
+   
+    - _**Task** is a class that implements Java's Callable <T> interface. It represents our custom asynchronous task._
+    - _**TaskType** is an enum that represents the type of an asynchronous task and their priorities._
+    - _**CustomExecutor** is a class that extends from Java's ThreadPoolExecutor class. It represents a custom thread pool that progresses the submitted asynchronous tasks according to their priorities._
+    - _**ComparablePriorityAdapter** is a class that extends from Java's FutureTask <T> & implements Java's Comparable interface._
+    - _**Tests** is a JUNIT5 class that tests the correctness of our complete solution._
+    - _**Other** classes were clarrified in Chapter 1._
