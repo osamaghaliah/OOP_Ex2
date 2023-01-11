@@ -1,17 +1,22 @@
-<h1 align="center">:clock9: Writing & Reading Files • Threads-Related :clock3:</h1>
+<h1 align="center">:clock9: Multithreading • Java :clock3:</h1>
  
 <h2 align="center"> An Object-Oriented-Programming Assignment </h2>
  
-<h3> Definition: </h3>
+<h3> Introduction: </h3>
  
-_A thread in Java is the direction or path that is taken while a program is being executed. Generally, all the programs have at least one thread, known as the main thread, that is provided by the JVM or Java Virtual Machine at the starting of the program’s execution. At this point, when the main thread is provided, the main() method is invoked by the main thread._
-> **_SOURCE: simplilearn_**
+* _The **Object-Oriented Programming** (OOP) term is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior._
+
+   > **_SOURCE: TechTarget_**
+
+* _The **Multithreading** term means that you have multiple threads of execution inside the same application. A **Thread** is like a separate CPU executing your application. Thus, a multithreaded application is like an application that has multiple CPUs executing different parts of the code at the same time._
+
+   > **_SOURCE: Jenkov.com_**
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-<h3> Assignment - Part A: </h3>
+<h3> Chapter 1 - Writting & Reading Files: </h3>
 
- * **Objective -** _Writing a certain amount of text files. Then, counting the accumulated number of lines of the whole files. This objective was implemented in 3 different solutions:_
+* **Objective -** _Writing a certain amount of text files. Then, counting the accumulated number of lines of the whole files. This objective was implemented in 3 different solutions:_
  
      :heavy_check_mark: _Once, while NOT using a thread._
      
@@ -69,4 +74,22 @@ _A thread in Java is the direction or path that is taken while a program is bein
      
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+<h3> Chapter 2 - Concurrency Customization: </h3>
 
+* **Objective -** _Unfortunately, in Java, thread pools don't manage tasks according by their priorities. However, it supports priorities for the threads who are responsible to handle the submitted tasks. Thus, this chapter has came to implement the following:._
+
+   :heavy_check_mark: Implementing a generic class that represents an asynchronous operation.
+   
+   :heavy_check_mark: Implementing a custom thread pool that supports the custom tasks to be handled according to their priorities.
+   
+   _Each one of the above implementations were developed by implementing Java's Callable <T> interface & extending ThreadPoolExecutor class._
+   
+* **Design Patterns Used -** _In order to achieve the objective mentioned above, we have implemented various design patterns that contribute in wrapping our solution as a whole. Design patterns are building blocks of a system's architecture which are recurring solution to design problems we face. They tend to identify and specify abstractions that are above the level of single classes and instances. Design Patterns are classified into 3 categories: Creational, Behavioural & Structural. Now, let's introduce the design patterns we used that all together present us our final solution:_
+   
+   - _**Thread Pool:** The Thread Pool pattern is a design pattern, used in software engineering to organise the processing of a large number of queued tasks through a smaller/limited number of threads. Results can also be queued. When a thread finishes it's task it requests another. If none are available, the thread can wait or terminate. Such pattern was used in our solution to provide a customized thread pool that progresses tasks according to their priorities and not according to its threads._
+   
+   - _**Active Object:** The Active Object pattern decouples method execution from method invocation for objects that each reside in their own thread of control. The goal is to introduce concurrency, by using asynchronous method invocation and a scheduler for handling requests. This pattern stems of the Thread Pool pattern and it was used in our solution to provide multiple tasks to be executed in our custom thread pool._
+   
+   - _**Adapter:** The Adapter pattern lets classes work together that couldn't due to incompatible interfaces. For instance, converting an interface of a class into another interface clients. Such pattern was used in our solution to make our thread pool to accept our customized tasks instead of runnables. Thus, Adapter pattern belongs to the Structural category._
+   
+   - _**Factory Method:** The Factory Method pattern defines an interface for creating an object of particular abstract type. However, it lets subclasses decide which concrete class to instantiate. Generally, it is used by many modern frameworks and APIs. Such pattern was used in our solution in order to create customized tasks. Thus, Factory Method pattern belongs to the Creational category._
