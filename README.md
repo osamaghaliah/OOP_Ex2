@@ -109,8 +109,8 @@
 
 * **U.M.L Diagram -**
 
-   ![UML](https://user-images.githubusercontent.com/75171676/211866856-e2ffe569-94c7-417d-b39e-83b2f3a4a73a.png)
-   
+   ![OOP_Ex2](https://user-images.githubusercontent.com/75171676/211917611-0e337ab8-175f-42ed-87f6-61fdb4a8855e.png)
+
    _**Clarification:**_
    
     - _**Task** is a class that implements Java's Callable <T> interface. It represents our custom asynchronous task._
